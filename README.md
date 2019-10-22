@@ -1,4 +1,3 @@
 # Portage-de-repas
-Portage de repas
-wesh la zone
-jvais tout casser
+
+Projet réaliser en trinôme : Charaf, Eva, Alexis 
