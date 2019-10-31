@@ -1,0 +1,333 @@
+
+------------------------------------------------------------
+-- Table: DATE
+------------------------------------------------------------
+CREATE TABLE public.DATE(
+	date   DATE  NOT NULL  ,
+	CONSTRAINT DATE_PK PRIMARY KEY (date)
+)WITHOUT OIDS;
+
+
+------------------------------------------------------------
+-- Table: CHEMIN
+------------------------------------------------------------
+CREATE TABLE public.CHEMIN(
+	num_chem        SERIAL NOT NULL ,
+	nom_chem        VARCHAR (10) NOT NULL ,
+	longueur_chem   FLOAT  NOT NULL  ,
+	CONSTRAINT CHEMIN_PK PRIMARY KEY (num_chem)
+)WITHOUT OIDS;
+
+
+------------------------------------------------------------
+-- Table: MENU
+------------------------------------------------------------
+CREATE TABLE public.MENU(
+	num_menu      SERIAL NOT NULL ,
+	nom_menu      VARCHAR (10) NOT NULL ,
+	prix_menu     FLOAT  NOT NULL ,
+	image_menu    VARCHAR (2000)  NOT NULL ,
+	description   VARCHAR (10) NOT NULL  ,
+	CONSTRAINT MENU_PK PRIMARY KEY (num_menu)
+)WITHOUT OIDS;
+
+
+------------------------------------------------------------
+-- Table: LIVRAISON
+------------------------------------------------------------
+CREATE TABLE public.LIVRAISON(
+	num_livraison   SERIAL NOT NULL ,
+	date            DATE  NOT NULL  ,
+	CONSTRAINT LIVRAISON_PK PRIMARY KEY (num_livraison)
+
+	,CONSTRAINT LIVRAISON_DATE_FK FOREIGN KEY (date) REFERENCES public.DATE(date)
+)WITHOUT OIDS;
+
+
+------------------------------------------------------------
+-- Table: TYPE_VEHICULE
+------------------------------------------------------------
+CREATE TABLE public.TYPE_VEHICULE(
+	num_type   SERIAL NOT NULL ,
+	type       VARCHAR (10) NOT NULL ,
+	capacite   INT  NOT NULL  ,
+	CONSTRAINT TYPE_VEHICULE_PK PRIMARY KEY (num_type)
+)WITHOUT OIDS;
+
+
+------------------------------------------------------------
+-- Table: VEHICULE
+------------------------------------------------------------
+CREATE TABLE public.VEHICULE(
+	num_veh    SERIAL NOT NULL ,
+	imm_veh    VARCHAR (10) NOT NULL ,
+	num_type   INT  NOT NULL  ,
+	CONSTRAINT VEHICULE_PK PRIMARY KEY (num_veh)
+
+	,CONSTRAINT VEHICULE_TYPE_VEHICULE_FK FOREIGN KEY (num_type) REFERENCES public.TYPE_VEHICULE(num_type)
+)WITHOUT OIDS;
+
+
+------------------------------------------------------------
+-- Table: NEWS
+------------------------------------------------------------
+CREATE TABLE public.NEWS(
+	num_news     SERIAL NOT NULL ,
+	titre_news   VARCHAR (10) NOT NULL ,
+	article      VARCHAR (2000)  NOT NULL ,
+	date_news    DATE  NOT NULL  ,
+	CONSTRAINT NEWS_PK PRIMARY KEY ()
+)WITHOUT OIDS;
+
+
+------------------------------------------------------------
+-- Table: INGREDIENTS
+------------------------------------------------------------
+CREATE TABLE public.INGREDIENTS(
+	num_ingre   SERIAL NOT NULL ,
+	nom_ingre   VARCHAR (-1) NOT NULL ,
+	allergene   VARCHAR (-1) NOT NULL  ,
+	CONSTRAINT INGREDIENTS_PK PRIMARY KEY (num_ingre)
+)WITHOUT OIDS;
+
+
+------------------------------------------------------------
+-- Table: LIB_AVIS
+------------------------------------------------------------
+CREATE TABLE public.LIB_AVIS(
+	num_lib_avis   SERIAL NOT NULL ,
+	lib_avis       VARCHAR (50) NOT NULL  ,
+	CONSTRAINT LIB_AVIS_PK PRIMARY KEY (num_lib_avis)
+)WITHOUT OIDS;
+
+
+------------------------------------------------------------
+-- Table: FOYER
+------------------------------------------------------------
+CREATE TABLE public.FOYER(
+	num_fo      SERIAL NOT NULL ,
+	adress_fo   VARCHAR (50) NOT NULL  ,
+	CONSTRAINT FOYER_PK PRIMARY KEY (num_fo)
+)WITHOUT OIDS;
+
+
+------------------------------------------------------------
+-- Table: BENEFICIAIRE
+------------------------------------------------------------
+CREATE TABLE public.BENEFICIAIRE(
+	num_benef         SERIAL NOT NULL ,
+	nom_benef         VARCHAR (50) NOT NULL ,
+	prenom_benef      VARCHAR (50) NOT NULL ,
+	genre             VARCHAR (10) NOT NULL ,
+	date_nais_benef   DATE  NOT NULL ,
+	tel_benef         VARCHAR (10) NOT NULL ,
+	ad_benef          VARCHAR (50) NOT NULL ,
+	cp_benef          VARCHAR (50) NOT NULL ,
+	mot_de_passe      VARCHAR (50) NOT NULL ,
+	num_fo            INT  NOT NULL  ,
+	CONSTRAINT BENEFICIAIRE_PK PRIMARY KEY (num_benef)
+
+	,CONSTRAINT BENEFICIAIRE_FOYER_FK FOREIGN KEY (num_fo) REFERENCES public.FOYER(num_fo)
+)WITHOUT OIDS;
+
+
+------------------------------------------------------------
+-- Table: AVIS
+------------------------------------------------------------
+CREATE TABLE public.AVIS(
+	num_avis       SERIAL NOT NULL ,
+	remarques      VARCHAR (10) NOT NULL ,
+	note           INT  NOT NULL ,
+	attitude_liv   VARCHAR (10) NOT NULL ,
+	num_benef      INT  NOT NULL ,
+	num_lib_avis   INT  NOT NULL  ,
+	CONSTRAINT AVIS_PK PRIMARY KEY (num_avis)
+
+	,CONSTRAINT AVIS_BENEFICIAIRE_FK FOREIGN KEY (num_benef) REFERENCES public.BENEFICIAIRE(num_benef)
+	,CONSTRAINT AVIS_LIB_AVIS0_FK FOREIGN KEY (num_lib_avis) REFERENCES public.LIB_AVIS(num_lib_avis)
+	,CONSTRAINT AVIS_LIB_AVIS_AK UNIQUE (num_lib_avis)
+)WITHOUT OIDS;
+
+
+------------------------------------------------------------
+-- Table: ABONNEMENT
+------------------------------------------------------------
+CREATE TABLE public.ABONNEMENT(
+	num_abonnement      SERIAL NOT NULL ,
+	date                DATE  NOT NULL ,
+	date_date_fin_abo   DATE  NOT NULL ,
+	num_fo              INT  NOT NULL  ,
+	CONSTRAINT ABONNEMENT_PK PRIMARY KEY (num_abonnement)
+
+	,CONSTRAINT ABONNEMENT_DATE_FK FOREIGN KEY (date) REFERENCES public.DATE(date)
+	,CONSTRAINT ABONNEMENT_DATE0_FK FOREIGN KEY (date_date_fin_abo) REFERENCES public.DATE(date)
+	,CONSTRAINT ABONNEMENT_FOYER1_FK FOREIGN KEY (num_fo) REFERENCES public.FOYER(num_fo)
+)WITHOUT OIDS;
+
+
+------------------------------------------------------------
+-- Table: FACTURE
+------------------------------------------------------------
+CREATE TABLE public.FACTURE(
+	num_fact         SERIAL NOT NULL ,
+	montant_fact     FLOAT  NOT NULL ,
+	num_abonnement   INT  NOT NULL ,
+	date             DATE  NOT NULL  ,
+	CONSTRAINT FACTURE_PK PRIMARY KEY (num_fact)
+
+	,CONSTRAINT FACTURE_ABONNEMENT_FK FOREIGN KEY (num_abonnement) REFERENCES public.ABONNEMENT(num_abonnement)
+	,CONSTRAINT FACTURE_DATE0_FK FOREIGN KEY (date) REFERENCES public.DATE(date)
+)WITHOUT OIDS;
+
+
+------------------------------------------------------------
+-- Table: Commande
+------------------------------------------------------------
+CREATE TABLE public.Commande(
+	num_commande     SERIAL NOT NULL ,
+	nb_plat_jour     INT  NOT NULL ,
+	num_abonnement   INT  NOT NULL ,
+	num_livraison    INT  NOT NULL ,
+	date             DATE  NOT NULL  ,
+	CONSTRAINT Commande_PK PRIMARY KEY (num_commande)
+
+	,CONSTRAINT Commande_ABONNEMENT_FK FOREIGN KEY (num_abonnement) REFERENCES public.ABONNEMENT(num_abonnement)
+	,CONSTRAINT Commande_LIVRAISON0_FK FOREIGN KEY (num_livraison) REFERENCES public.LIVRAISON(num_livraison)
+	,CONSTRAINT Commande_DATE1_FK FOREIGN KEY (date) REFERENCES public.DATE(date)
+)WITHOUT OIDS;
+
+
+------------------------------------------------------------
+-- Table: CONGE
+------------------------------------------------------------
+CREATE TABLE public.CONGE(
+	num_conge             SERIAL NOT NULL ,
+	motif                 VARCHAR (50) NOT NULL ,
+	date                  DATE  NOT NULL ,
+	date_date_fin_conge   DATE  NOT NULL  ,
+	CONSTRAINT CONGE_PK PRIMARY KEY (num_conge)
+
+	,CONSTRAINT CONGE_DATE_FK FOREIGN KEY (date) REFERENCES public.DATE(date)
+	,CONSTRAINT CONGE_DATE0_FK FOREIGN KEY (date_date_fin_conge) REFERENCES public.DATE(date)
+)WITHOUT OIDS;
+
+
+------------------------------------------------------------
+-- Table: PERSONNEL
+------------------------------------------------------------
+CREATE TABLE public.PERSONNEL(
+	num_pers         SERIAL NOT NULL ,
+	nom_pers         VARCHAR (20) NOT NULL ,
+	prenom_pers      VARCHAR (20) NOT NULL ,
+	tel_pers         VARCHAR (20) NOT NULL ,
+	mail_pers        VARCHAR (50) NOT NULL ,
+	adresse          VARCHAR (50) NOT NULL ,
+	date_nais_pers   DATE  NOT NULL ,
+	permis           BOOL  NOT NULL  ,
+	CONSTRAINT PERSONNEL_PK PRIMARY KEY (num_pers)
+)WITHOUT OIDS;
+
+
+------------------------------------------------------------
+-- Table: LIVREUR
+------------------------------------------------------------
+CREATE TABLE public.LIVREUR(
+	num_pers         INT  NOT NULL ,
+	num_liv          INT  NOT NULL ,
+	nom_pers         VARCHAR (20) NOT NULL ,
+	prenom_pers      VARCHAR (20) NOT NULL ,
+	tel_pers         VARCHAR (20) NOT NULL ,
+	mail_pers        VARCHAR (50) NOT NULL ,
+	adresse          VARCHAR (50) NOT NULL ,
+	date_nais_pers   DATE  NOT NULL ,
+	permis           BOOL  NOT NULL  ,
+	CONSTRAINT LIVREUR_PK PRIMARY KEY (num_pers,num_liv)
+
+	,CONSTRAINT LIVREUR_PERSONNEL_FK FOREIGN KEY (num_pers) REFERENCES public.PERSONNEL(num_pers)
+)WITHOUT OIDS;
+
+
+------------------------------------------------------------
+-- Table: CUISINIER
+------------------------------------------------------------
+CREATE TABLE public.CUISINIER(
+	num_pers         INT  NOT NULL ,
+	num_cuisi        INT  NOT NULL ,
+	nom_pers         VARCHAR (20) NOT NULL ,
+	prenom_pers      VARCHAR (20) NOT NULL ,
+	tel_pers         VARCHAR (20) NOT NULL ,
+	mail_pers        VARCHAR (50) NOT NULL ,
+	adresse          VARCHAR (50) NOT NULL ,
+	date_nais_pers   DATE  NOT NULL ,
+	permis           BOOL  NOT NULL  ,
+	CONSTRAINT CUISINIER_PK PRIMARY KEY (num_pers,num_cuisi)
+
+	,CONSTRAINT CUISINIER_PERSONNEL_FK FOREIGN KEY (num_pers) REFERENCES public.PERSONNEL(num_pers)
+)WITHOUT OIDS;
+
+
+------------------------------------------------------------
+-- Table: course
+------------------------------------------------------------
+CREATE TABLE public.course(
+	num_veh         INT  NOT NULL ,
+	num_pers        INT  NOT NULL ,
+	num_liv         INT  NOT NULL ,
+	num_livraison   INT  NOT NULL ,
+	num_chem        INT  NOT NULL  ,
+	CONSTRAINT course_PK PRIMARY KEY (num_veh,num_pers,num_liv,num_livraison,num_chem)
+
+	,CONSTRAINT course_VEHICULE_FK FOREIGN KEY (num_veh) REFERENCES public.VEHICULE(num_veh)
+	,CONSTRAINT course_LIVREUR0_FK FOREIGN KEY (num_pers,num_liv) REFERENCES public.LIVREUR(num_pers,num_liv)
+	,CONSTRAINT course_LIVRAISON1_FK FOREIGN KEY (num_livraison) REFERENCES public.LIVRAISON(num_livraison)
+	,CONSTRAINT course_CHEMIN2_FK FOREIGN KEY (num_chem) REFERENCES public.CHEMIN(num_chem)
+)WITHOUT OIDS;
+
+
+------------------------------------------------------------
+-- Table: composer
+------------------------------------------------------------
+CREATE TABLE public.composer(
+	num_menu       INT  NOT NULL ,
+	num_pers       INT  NOT NULL ,
+	num_cuisi      INT  NOT NULL ,
+	date           DATE  NOT NULL ,
+	num_commande   INT  NOT NULL ,
+	plat_prepare   BOOL  NOT NULL ,
+	qte_prepare    INT  NOT NULL  ,
+	CONSTRAINT composer_PK PRIMARY KEY (num_menu,num_pers,num_cuisi,date,num_commande)
+
+	,CONSTRAINT composer_MENU_FK FOREIGN KEY (num_menu) REFERENCES public.MENU(num_menu)
+	,CONSTRAINT composer_CUISINIER0_FK FOREIGN KEY (num_pers,num_cuisi) REFERENCES public.CUISINIER(num_pers,num_cuisi)
+	,CONSTRAINT composer_DATE1_FK FOREIGN KEY (date) REFERENCES public.DATE(date)
+	,CONSTRAINT composer_Commande2_FK FOREIGN KEY (num_commande) REFERENCES public.Commande(num_commande)
+)WITHOUT OIDS;
+
+
+------------------------------------------------------------
+-- Table: contenir
+------------------------------------------------------------
+CREATE TABLE public.contenir(
+	num_menu    INT  NOT NULL ,
+	num_ingre   INT  NOT NULL  ,
+	CONSTRAINT contenir_PK PRIMARY KEY (num_menu,num_ingre)
+
+	,CONSTRAINT contenir_MENU_FK FOREIGN KEY (num_menu) REFERENCES public.MENU(num_menu)
+	,CONSTRAINT contenir_INGREDIENTS0_FK FOREIGN KEY (num_ingre) REFERENCES public.INGREDIENTS(num_ingre)
+)WITHOUT OIDS;
+
+
+------------------------------------------------------------
+-- Table: reserver_liv
+------------------------------------------------------------
+CREATE TABLE public.reserver_liv(
+	num_pers    INT  NOT NULL ,
+	num_conge   INT  NOT NULL  ,
+	CONSTRAINT reserver_liv_PK PRIMARY KEY (num_pers,num_conge)
+
+	,CONSTRAINT reserver_liv_PERSONNEL_FK FOREIGN KEY (num_pers) REFERENCES public.PERSONNEL(num_pers)
+	,CONSTRAINT reserver_liv_CONGE0_FK FOREIGN KEY (num_conge) REFERENCES public.CONGE(num_conge)
+)WITHOUT OIDS;
+
+
+
