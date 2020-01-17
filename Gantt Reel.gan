@@ -1,13 +1,14 @@
-<?xml version="1.0" encoding="UTF-8"?><project name="Untitled Gantt Project" company="" webLink="http://" view-date="2019-10-17" view-index="0" gantt-divider-location="463" resource-divider-location="125" version="2.7.2" locale="fr_FR">
+<?xml version="1.0" encoding="UTF-8"?><project name="Untitled Gantt Project" company="" webLink="http://" view-date="2019-12-23" view-index="0" gantt-divider-location="284" resource-divider-location="380" version="2.7.2" locale="fr_FR">
     <description/>
     <view zooming-state="default:3" id="gantt-chart">
-        <field id="tpd3" name="Nom" width="69" order="0"/>
-        <field id="tpd4" name="Date de début" width="3" order="1"/>
-        <field id="tpd5" name="Date de fin" width="27" order="2"/>
+        <field id="tpd3" name="Nom" width="66" order="0"/>
+        <field id="tpd4" name="Date de début" width="5" order="1"/>
+        <field id="tpd5" name="Date de fin" width="28" order="2"/>
+        <option id="color.recent"><![CDATA[#ff9999]]></option>
     </view>
     <view id="resource-table">
         <field id="0" name="Nom" width="50" order="0"/>
-        <field id="1" name="Rôle par défaut" width="49" order="1"/>
+        <field id="1" name="Rôle par défaut" width="50" order="1"/>
     </view>
     <!-- -->
     <calendars>
@@ -33,12 +34,20 @@
             <taskproperty id="tpd8" name="coordinator" type="default" valuetype="text"/>
             <taskproperty id="tpd9" name="predecessorsr" type="default" valuetype="text"/>
         </taskproperties>
-        <task id="0" name="Formation des équipes + Selection du sujet + Création espace de partage (Discord)" color="#8cb6ce" meeting="false" start="2019-10-02" duration="1" complete="0" expand="true"/>
-        <task id="2" name="Conception MCD + Maquette" color="#8cb6ce" meeting="false" start="2019-10-02" duration="1" complete="0" expand="true"/>
-        <task id="12" name="Amelioration MCD + Amélioration Maquette" color="#8cb6ce" meeting="false" start="2019-10-22" duration="1" complete="0" expand="true"/>
-        <task id="13" name="Bilan MCD Mme UFARTE" color="#8cb6ce" meeting="false" start="2019-10-22" duration="1" complete="0" expand="true"/>
-        <task id="14" name="Finition MCD" color="#8cb6ce" meeting="false" start="2019-10-31" duration="1" complete="0" expand="true"/>
-        <task id="28" name="Création Base de données" color="#8cb6ce" meeting="false" start="2019-10-31" duration="1" complete="0" expand="true"/>
+        <task id="0" name="Formation des équipes + Selection du sujet + Création espace de partage (Discord)" color="#8cb6ce" meeting="false" start="2019-10-02" duration="1" complete="0" expand="true">
+            <depend id="2" type="2" difference="0" hardness="Strong"/>
+        </task>
+        <task id="2" name="Conception MCD + Maquette" color="#8cb6ce" meeting="false" start="2019-10-03" duration="1" complete="0" expand="true"/>
+        <task id="12" name="Amelioration MCD + Amélioration Maquette" color="#ff9999" meeting="false" start="2019-10-22" duration="1" complete="0" expand="true">
+            <depend id="13" type="2" difference="0" hardness="Strong"/>
+        </task>
+        <task id="13" name="Bilan MCD Mme UFARTE" color="#8cb6ce" meeting="false" start="2019-10-23" duration="1" complete="0" expand="true"/>
+        <task id="14" name="Amelioration MCD" color="#8cb6ce" meeting="false" start="2019-10-31" duration="1" complete="0" expand="true">
+            <depend id="29" type="2" difference="0" hardness="Strong"/>
+        </task>
+        <task id="29" name="Amélioration MCD" color="#8cb6ce" meeting="false" start="2019-11-01" duration="5" complete="0" expand="true"/>
+        <task id="30" name="Finition MCD" color="#8cb6ce" meeting="false" start="2020-01-10" duration="1" complete="0" expand="true"/>
+        <task id="31" name="Début interface HTML" color="#8cb6ce" meeting="false" start="2020-01-10" duration="1" complete="0" expand="true"/>
     </tasks>
     <resources>
         <resource id="0" name="PINEDE Eva" function="Default:1" contacts="" phone=""/>
@@ -51,6 +60,8 @@
         <allocation task-id="14" resource-id="0" function="Default:1" responsible="true" load="100.0"/>
         <allocation task-id="12" resource-id="0" function="Default:1" responsible="true" load="50.0"/>
         <allocation task-id="13" resource-id="0" function="Default:1" responsible="true" load="50.0"/>
+        <allocation task-id="31" resource-id="0" function="Default:1" responsible="true" load="100.0"/>
+        <allocation task-id="30" resource-id="0" function="Default:1" responsible="true" load="100.0"/>
         <allocation task-id="0" resource-id="1" function="Default:0" responsible="false" load="50.0"/>
         <allocation task-id="2" resource-id="1" function="Default:0" responsible="false" load="50.0"/>
         <allocation task-id="14" resource-id="1" function="Default:1" responsible="true" load="100.0"/>
@@ -61,15 +72,17 @@
         <allocation task-id="14" resource-id="2" function="Default:1" responsible="true" load="100.0"/>
         <allocation task-id="12" resource-id="2" function="Default:1" responsible="true" load="50.0"/>
         <allocation task-id="13" resource-id="2" function="Default:1" responsible="true" load="50.0"/>
+        <allocation task-id="31" resource-id="2" function="Default:1" responsible="false" load="100.0"/>
+        <allocation task-id="30" resource-id="2" function="Default:1" responsible="false" load="100.0"/>
     </allocations>
     <vacations/>
     <taskdisplaycolumns>
         <displaycolumn property-id="tpd2" order="-1" width="75" visible="false"/>
         <displaycolumn property-id="tpd7" order="-1" width="75" visible="false"/>
         <displaycolumn property-id="tpd12" order="-1" width="75" visible="false"/>
-        <displaycolumn property-id="tpd3" order="0" width="317" visible="true"/>
+        <displaycolumn property-id="tpd3" order="0" width="186" visible="true"/>
         <displaycolumn property-id="tpd4" order="1" width="15" visible="true"/>
-        <displaycolumn property-id="tpd5" order="2" width="127" visible="true"/>
+        <displaycolumn property-id="tpd5" order="2" width="79" visible="true"/>
         <displaycolumn property-id="tpd6" order="-1" width="75" visible="false"/>
         <displaycolumn property-id="tpd10" order="-1" width="75" visible="false"/>
         <displaycolumn property-id="tpd11" order="-1" width="75" visible="false"/>
