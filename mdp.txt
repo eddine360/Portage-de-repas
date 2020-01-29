@@ -1,0 +1,6 @@
+login       mdp
+test_adm    adm
+test_benef  benef
+test_liv    liv
+test2_adm   adm2
+test2_liv   liv2
