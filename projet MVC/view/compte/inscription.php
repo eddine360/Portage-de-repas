@@ -19,7 +19,7 @@
 
 	<div class="col-md-6">
 		<?php
-			$filepath = File::build_path(array("view", $controller, "$view.php"));
+			$filepath = File::build_path(array("view", "compte", "connection.php"));
 			require $filepath;
 		?>
 	</div>
