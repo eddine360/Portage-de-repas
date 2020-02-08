@@ -18,17 +18,9 @@
 	</div>
 
 	<div class="col-md-6">
-		<form method="post" action="./index.php?controller=compte&action=registred">
-		  <fieldset class="row">
-		    <legend>Connectez vous :</legend>
-
-			<p><label for="loginc">Identifiant :</label></p>
-			<p><input type="text" placeholder="Ex : MonLogin" name="login" id="loginc" required/></p>
-			<p><label for="mdpc">Mot de Passe :</label></p>
-			<p><input type="password" placeholder="Ex : MonMDP" name="mot_de_passe" id="mdpc" required/></p>
-			<p><input type="submit" value="Envoyer"/></p>	
-
-		  </fieldset>
-		</form>
+		<?php
+			$filepath = File::build_path(array("view", $controller, "$view.php"));
+			require $filepath;
+		?>
 	</div>
   </div>
