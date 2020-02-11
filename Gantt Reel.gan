@@ -1,10 +1,10 @@
-<?xml version="1.0" encoding="UTF-8"?><project name="Untitled Gantt Project" company="" webLink="http://" view-date="2020-01-06" view-index="0" gantt-divider-location="500" resource-divider-location="380" version="2.7.2" locale="fr_FR">
+<?xml version="1.0" encoding="UTF-8"?><project name="Untitled Gantt Project" company="" webLink="http://" view-date="2020-01-28" view-index="0" gantt-divider-location="500" resource-divider-location="380" version="2.7.2" locale="fr_FR">
     <description/>
     <view zooming-state="default:2" id="gantt-chart">
         <field id="tpd3" name="Nom" width="59" order="0"/>
         <field id="tpd4" name="Date de début" width="9" order="1"/>
         <field id="tpd5" name="Date de fin" width="30" order="2"/>
-        <option id="color.recent"><![CDATA[#00cc33 #00cccc #ff9999 #009999]]></option>
+        <option id="color.recent"><![CDATA[#ff9999 #00cc33 #00cccc #009999]]></option>
     </view>
     <view id="resource-table">
         <field id="0" name="Nom" width="50" order="0"/>
@@ -37,7 +37,7 @@
         <task id="0" name="Formation des équipes + Selection du sujet + Création espace de partage (Discord)" color="#8cb6ce" meeting="false" start="2019-10-02" duration="1" complete="0" expand="true">
             <depend id="62" type="2" difference="0" hardness="Strong"/>
         </task>
-        <task id="61" name="MCD" color="#ff9999" meeting="false" start="2019-10-03" duration="81" complete="0" expand="true">
+        <task id="61" name="MCD et Maquette" color="#ff9999" meeting="false" start="2019-10-03" duration="94" complete="0" expand="true">
             <task id="62" name="Début conception MCD + Maquette" color="#ff9999" meeting="false" start="2019-10-03" duration="1" complete="0" expand="true"/>
             <task id="63" name="Amelioration MCD + Maquette" color="#ff9999" meeting="false" start="2019-10-22" duration="1" complete="0" expand="true">
                 <depend id="64" type="2" difference="0" hardness="Strong"/>
@@ -49,6 +49,7 @@
             <task id="68" name="Finition MCD" color="#ff9999" meeting="false" start="2020-01-13" duration="9" complete="0" expand="true">
                 <depend id="36" type="2" difference="0" hardness="Strong"/>
             </task>
+            <task id="84" name="Mise en forme Maquette" color="#ff9999" meeting="false" start="2020-02-11" duration="1" complete="0" expand="true"/>
         </task>
         <task id="36" name="Base de Données" color="#00cccc" meeting="false" start="2020-01-24" duration="1" complete="0" expand="true">
             <task id="82" name="Création BD : Portage_de_repas_Bram" color="#00cccc" meeting="false" start="2020-01-24" duration="1" complete="0" expand="true"/>
@@ -76,6 +77,7 @@
         <allocation task-id="82" resource-id="0" function="Default:1" responsible="true" load="100.0"/>
         <allocation task-id="56" resource-id="0" function="Default:1" responsible="true" load="100.0"/>
         <allocation task-id="69" resource-id="0" function="Default:1" responsible="true" load="100.0"/>
+        <allocation task-id="84" resource-id="0" function="Default:1" responsible="false" load="100.0"/>
         <allocation task-id="0" resource-id="1" function="Default:0" responsible="false" load="50.0"/>
         <allocation task-id="62" resource-id="1" function="Default:0" responsible="false" load="50.0"/>
         <allocation task-id="63" resource-id="1" function="Default:1" responsible="true" load="50.0"/>
@@ -85,6 +87,7 @@
         <allocation task-id="56" resource-id="1" function="Default:1" responsible="false" load="100.0"/>
         <allocation task-id="69" resource-id="1" function="Default:1" responsible="false" load="100.0"/>
         <allocation task-id="58" resource-id="1" function="Default:1" responsible="true" load="100.0"/>
+        <allocation task-id="84" resource-id="1" function="Default:1" responsible="true" load="100.0"/>
         <allocation task-id="0" resource-id="2" function="Default:0" responsible="false" load="50.0"/>
         <allocation task-id="36" resource-id="2" function="Default:1" responsible="true" load="100.0"/>
         <allocation task-id="62" resource-id="2" function="Default:0" responsible="false" load="50.0"/>
@@ -96,6 +99,7 @@
         <allocation task-id="56" resource-id="2" function="Default:1" responsible="false" load="100.0"/>
         <allocation task-id="60" resource-id="2" function="Default:1" responsible="true" load="100.0"/>
         <allocation task-id="69" resource-id="2" function="Default:1" responsible="false" load="100.0"/>
+        <allocation task-id="84" resource-id="2" function="Default:1" responsible="false" load="100.0"/>
     </allocations>
     <vacations/>
     <taskdisplaycolumns>
