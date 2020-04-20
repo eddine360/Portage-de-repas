@@ -5,7 +5,7 @@ if(isset($_SESSION['id'])){											//Si un utilisateur est connecte
 }
 elseif(isset($_POST['login']) && isset($_POST['mot_de_passe'])){
 	require_once ('./lib/bdd.php');
-  require_once ('./lib/Security.php'));
+  require_once ('./lib/Security.php');
   $sql="SELECT * FROM compte WHERE identifiant=$1 AND mdp=$2";
 	$req_prep = pg_prepare(Model::$idc, "requête de vérification login, mot de passe", $sql);
 	$values = array($_POST['login'], Security::chiffrer($_POST['mot_de_passe']));
@@ -13,7 +13,7 @@ elseif(isset($_POST['login']) && isset($_POST['mot_de_passe'])){
 	$result = pg_execute(Model::$idc, "requête de vérification login, mot de passe", $values);
 
 	if (pg_numrows($result) != 1){
-		$msg = "erreur : votre compte n'a pas pu être trouvé !"
+		$msg = "erreur : votre compte n'a pas pu être trouvé !";
 	}
 	else {
     $_SESSION['id'] = pg_fetch_row($result)[0];
@@ -37,6 +37,6 @@ echo  '<form method="post" action="./connexion.php">
         <input id="connexion" type="submit" value="Envoyer" />
       </p>
     </fieldset>
-  </form>'
+  </form>';
 
 ?>
