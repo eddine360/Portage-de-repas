@@ -5,7 +5,7 @@ if(isset($_SESSION['id'])){											//Si un utilisateur est connecte
 }
 elseif(isset($_POST['login']) && isset($_POST['mot_de_passe'])){
 	require_once ('./lib/bdd.php');
-	require_once ('./lib/Security.php'));
+	require_once ('./lib/Security.php');
 	$statement = "INSERT INTO compte (identifiant, mdp, num_type_co)
             VALUES ($1, $2, $3)";
 
@@ -13,7 +13,7 @@ elseif(isset($_POST['login']) && isset($_POST['mot_de_passe'])){
 	$values = array($_POST['login'], Security::chiffrer($_POST['mot_de_passe']), 2);
 	$result = pg_execute(Model::$idc, "requête de création de compte", $values);
 	if (pg_affected_rows($result) < 1){
-		$msg = "erreur : votre compte n'a pas pu être créé !"
+		$msg = "erreur : votre compte n'a pas pu être créé !";
 	}
 	else {
 		$sql="SELECT * FROM compte WHERE identifiant=$1 AND mdp=$2";
@@ -52,11 +52,11 @@ echo  "<div class='row'>
 			</form>
 		</div>
 
-		<div class='col-md-6'>"
+		<div class='col-md-6'>";
 		
 			include "./connexion.php";
 		
-echo  "</div></div>"
+echo  "</div></div>";
 /*<script type='text/javascript'>
     function check(){
         if(document.getElementById('mdp-confirm').value != document.getElementById('mdpi').value){
