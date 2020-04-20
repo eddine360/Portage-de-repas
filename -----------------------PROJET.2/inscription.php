@@ -46,7 +46,7 @@ echo  "<div class='row'>
 					<p><input type='password' placeholder='Ex : MonMDP' name='mot_de_passe' id='mdpi' required/></p>
 					<p><label for='mdp-confirm'>Confirmer le mot de Passe :</label></p>
 					<p><input type='password' placeholder='Ex : MonMDP' name='confirm_mot_de_passe' id='mdp-confirm' required/></p>
-	      	<p><input id='inscription' type='submit' value='Envoyer' disabled></p>
+	      	<p><input id='inscription' type='submit' value='Envoyer'></p>
 	        
 		  	</fieldset>
 			</form>
