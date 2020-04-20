@@ -58,7 +58,7 @@ echo  "<div class='row'>
 		
 echo  "</div></div>"
 /*<script type='text/javascript'>
-    function checkbox(){
+    function check(){
         if(document.getElementById('mdp-confirm').value != document.getElementById('mdpi').value){
             document.getElementById('inscription').disabled = 'disabled';
 		}
